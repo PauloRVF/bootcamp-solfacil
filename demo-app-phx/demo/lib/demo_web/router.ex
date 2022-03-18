@@ -8,7 +8,7 @@ defmodule DemoWeb.Router do
     plug :put_root_layout, {DemoWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    #plug DemoWeb.Plugs.Myauth
+    plug DemoWeb.Plugs.Myauth
     plug DemoWeb.Plugs.Mylogger
   end
 
