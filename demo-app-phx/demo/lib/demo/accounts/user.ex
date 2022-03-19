@@ -7,6 +7,7 @@ defmodule Demo.Accounts.User do
     field :email, :string
     field :nome, :string
     field :senha, :string
+    has_many :posts, Demo.Blogposts.Blogpost
 
     timestamps()
   end

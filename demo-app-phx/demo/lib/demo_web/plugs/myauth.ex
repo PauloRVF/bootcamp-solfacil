@@ -12,10 +12,14 @@ defmodule DemoWeb.Plugs.Myauth do
   defp authorized(_), do: {:error, "User not authenticated"}
 
   defp get_user(conn) do
-    %{
-      user: hd(get_req_header(conn, "user")),
-      password: hd(get_req_header(conn, "password"))
-    }
+    if (get_req_header(conn, "user") == []) or (get_req_header(conn, "password") == []) do
+      %{user: nil, password: nil}
+    else
+      %{
+        user: hd(get_req_header(conn, "user")),
+        password: hd(get_req_header(conn, "password"))
+      }
+    end
   end
 
   def init(options), do: options
