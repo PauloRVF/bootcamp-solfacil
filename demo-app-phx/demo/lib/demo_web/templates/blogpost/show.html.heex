@@ -16,3 +16,5 @@
 
 <span><%= link "Edit", to: Routes.blogpost_path(@conn, :edit, @blogpost) %></span> |
 <span><%= link "Back", to: Routes.blogpost_path(@conn, :index) %></span>
+<br><br>
+<%= render("user_details.html", Map.put(assigns, :user, @blogpost.user) )%>

@@ -1,0 +1,13 @@
+<%= if @user do %>
+    <div style="border: solid; padding: 30px; width: 400px; margin:0 auto;">
+
+        <h2 style="text-align: center;">Usuário</h2>
+        <hr style="margin-left: auto;margin-right: auto; height: 4px; background-color: black">
+
+        <tr>
+            <li>Nome: <%= label :nome, Demo.prefix_name(@user.nome) %></li>
+            <li>Email: <%= label :email, @user.email %></li>
+            <li>Admin: <%= label :admin, @user.admin %></li>
+        </tr>
+    </div>
+<% end %>

@@ -8,7 +8,7 @@ defmodule DemoWeb.Router do
     plug :put_root_layout, {DemoWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug DemoWeb.Plugs.Myauth
+    #plug DemoWeb.Plugs.Myauth
     #plug DemoWeb.Plugs.Mylogger
   end
 
@@ -22,6 +22,14 @@ defmodule DemoWeb.Router do
     get "/", PageController, :index
     resources "/users", UserController
     resources "/blogposts", BlogpostController
+  end
+
+  scope "/api", DemoWeb.Api do
+    pipe_through :api
+
+    get "/users", UserController, :index
+    post "/users", UserController, :create
+    get "/users/:id", UserController, :show
   end
 
   # Other scopes may use custom stacks.

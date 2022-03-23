@@ -6,6 +6,7 @@ defmodule DemoWeb.BlogpostController do
 
   def index(conn, _params) do
     blogposts = Blogposts.list_blogposts()
+    IO.inspect(blogposts, label: "TESTEEEE")
     render(conn, "index.html", blogposts: blogposts)
   end
 

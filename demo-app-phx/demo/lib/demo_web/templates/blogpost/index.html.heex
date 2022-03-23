@@ -5,6 +5,7 @@
     <tr>
       <th>Titulo</th>
       <th>Conteudo</th>
+      <th>Usuario</th>
 
       <th></th>
     </tr>
@@ -14,6 +15,11 @@
     <tr>
       <td><%= blogpost.titulo %></td>
       <td><%= blogpost.conteudo %></td>
+      <%= if blogpost.user do %>
+        <td><%= blogpost.user.nome %></td>
+      <% else %>
+      <td></td>
+      <% end %>
 
       <td>
         <span><%= link "Show", to: Routes.blogpost_path(@conn, :show, blogpost) %></span>

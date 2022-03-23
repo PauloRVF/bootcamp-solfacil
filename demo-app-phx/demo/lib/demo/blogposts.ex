@@ -7,6 +7,7 @@ defmodule Demo.Blogposts do
   alias Demo.Repo
 
   alias Demo.Blogposts.Blogpost
+  #alias Demo.Accounts.User
   alias Demo.Accounts
 
   @doc """
@@ -25,9 +26,15 @@ defmodule Demo.Blogposts do
     Repo.all(query)
   end
 
-  def list_blogposts() do
-    Repo.all(Blogpost)
-  end
+  def list_blogposts(), do: Repo.all(Blogpost) |> Repo.preload([:user])
+
+  # def list_blogposts_with_username() do
+  #   query = from b in Blogpost,
+  #         join: u in User, on: b.user_id == u.id,
+  #         select: %{conteudo: b.conteudo, id: b.id, titulo: b.titulo, user_name: u.nome}
+
+  #   Repo.all(query)
+  # end
 
   @doc """
   Gets a single blogpost.
@@ -43,7 +50,10 @@ defmodule Demo.Blogposts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_blogpost!(id), do: Repo.get!(Blogpost, id)
+  def get_blogpost!(id) do
+    Repo.get!(Blogpost, id)
+    |> Repo.preload([:user])
+  end
 
   @doc """
   Creates a blogpost.

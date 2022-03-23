@@ -16,6 +16,6 @@ defmodule Demo.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:nome, :email, :senha, :admin])
-    |> validate_required([:nome, :email, :senha, :admin])
+    |> validate_required([:nome], message: "Campo não informado/inválido")
   end
 end
